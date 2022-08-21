@@ -1,4 +1,4 @@
-package com.amcoding.mylibrary.welcome
+package com.amcoding.onboarding_presentation.welcome
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
@@ -10,7 +10,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.amcoding.core_ui.LocalSpacing
-import com.amcoding.mylibrary.components.ActionButton
+import com.amcoding.onboarding_presentation.components.ActionButton
 import com.plcoding.core.R
 import com.plcoding.core.navigation.Route
 import com.plcoding.core.util.UiEvent
@@ -34,7 +34,7 @@ fun WelcomeScreen(
         Spacer(modifier = Modifier.height(spacing.spaceMedium))
         ActionButton(
             text = stringResource(id = R.string.next),
-            onClick = { onNavigate(UiEvent.Navigate(Route.AGE)) },
+            onClick = { onNavigate(UiEvent.Navigate(Route.GENDER)) },
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
     }

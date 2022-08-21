@@ -1,4 +1,4 @@
-package com.amcoding.mylibrary.components
+package com.amcoding.onboarding_presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
