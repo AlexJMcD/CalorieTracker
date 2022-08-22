@@ -1,4 +1,4 @@
-package com.amcoding.onboarding_presentation.age
+package com.amcoding.onboarding_presentation.weight
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
@@ -14,14 +14,17 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.amcoding.core_ui.LocalSpacing
 import com.amcoding.onboarding_presentation.components.ActionButton
 import com.amcoding.onboarding_presentation.components.UnitTextField
+import com.amcoding.onboarding_presentation.height.HeightViewModel
 import com.plcoding.core.R
 import com.plcoding.core.util.UiEvent
 
+
+
 @Composable
-fun AgeScreen(
+fun WeightScreen(
     scaffoldState: ScaffoldState,
     onNavigate: (UiEvent.Navigate) -> Unit,
-    viewModel: AgeViewModel = hiltViewModel()
+    viewModel: WeightViewModel = hiltViewModel()
 ){
     val spacing = LocalSpacing.current
     val context = LocalContext.current
@@ -49,14 +52,14 @@ fun AgeScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = stringResource(id = R.string.whats_your_age),
+                text = stringResource(id = R.string.whats_your_weight),
                 style = MaterialTheme.typography.h3
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
             UnitTextField(
-                value = viewModel.age,
-                onValueChange = viewModel::onAgeEnter,
-                unit = stringResource(id = R.string.years)
+                value = viewModel.weight,
+                onValueChange = viewModel::onWeightEnter,
+                unit = stringResource(id = R.string.kg)
             )
         }
         ActionButton(
@@ -65,5 +68,4 @@ fun AgeScreen(
             modifier = Modifier.align(Alignment.BottomEnd)
         )
     }
-
 }
