@@ -20,26 +20,25 @@ fun UnitDisplay(
     modifier: Modifier = Modifier,
     amountTextSize: TextUnit = 20.sp,
     amountColor: Color = MaterialTheme.colors.onBackground,
-    unitTextSize: TextUnit = 40.sp,
+    unitTextSize: TextUnit = 14.sp,
     unitColor: Color = MaterialTheme.colors.onBackground
-){
+) {
     val spacing = LocalSpacing.current
-    Row(modifier = modifier){
+    Row(modifier = modifier) {
         Text(
             text = amount.toString(),
             style = MaterialTheme.typography.h1,
+            fontSize = amountTextSize,
             color = amountColor,
             modifier = Modifier.alignBy(LastBaseline)
         )
-        Spacer(
-            modifier = Modifier.width(spacing.spaceExtraSmall)
-        )
+        Spacer(modifier = Modifier.width(spacing.spaceExtraSmall))
         Text(
             text = unit,
             style = MaterialTheme.typography.body1,
+            fontSize = unitTextSize,
             color = unitColor,
             modifier = Modifier.alignBy(LastBaseline)
         )
     }
-
 }
