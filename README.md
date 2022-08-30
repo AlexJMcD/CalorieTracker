@@ -3,7 +3,7 @@ A calorie tracker portfolio app.
  
 The app asks the user for personal details, such as gender, age, height and weight, and uses these values to calculate a recommended daily calorie intake. The app is still under construction.
 
-<img src = "https://user-images.githubusercontent.com/92163117/187426247-82fc3a2c-b117-4e77-8571-7b0171b7a573.png" width="300" height="535" />
+<img src = "https://user-images.githubusercontent.com/92163117/187426247-82fc3a2c-b117-4e77-8571-7b0171b7a573.png" width="600" height="1100" />
 
 ![GenderScreen](https://user-images.githubusercontent.com/92163117/187426286-6ef3e177-9503-405a-bcfa-b3f5e59245d6.png)
 
