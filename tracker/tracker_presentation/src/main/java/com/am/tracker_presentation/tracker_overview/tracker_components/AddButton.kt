@@ -24,7 +24,7 @@ fun AddButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    color: Color
+    color: Color = MaterialTheme.colors.primary
 ){
     val spacing = LocalSpacing.current
     Row(
