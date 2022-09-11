@@ -13,24 +13,26 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
 import java.time.LocalDate
 
-class TrackerRepositoryImpl (
+class TrackerRepositoryImpl(
     private val dao: TrackerDao,
     private val api: OpenFoodApi
-        ): TrackerRepository{
+): TrackerRepository {
 
     override suspend fun searchFood(
         query: String,
         page: Int,
         pageSize: Int
     ): Result<List<TrackableFood>> {
-         return try {
+        return try {
             val searchDto = api.searchFood(
                 query = query,
                 page = page,
                 pageSize = pageSize
             )
-            Result.success(searchDto.products.mapNotNull { it.toTrackableFood() })
-        } catch (e: Exception){
+            Result.success(
+                searchDto.products.mapNotNull { it.toTrackableFood() }
+            )
+        } catch(e: Exception) {
             e.printStackTrace()
             Result.failure(e)
         }
@@ -47,10 +49,10 @@ class TrackerRepositoryImpl (
     override fun getFoodsForDate(localDate: LocalDate): Flow<List<TrackedFood>> {
         return dao.getFoodsForDate(
             day = localDate.dayOfMonth,
-        month = localDate.monthValue,
-        year = localDate.year).map{ entities ->
+            month = localDate.monthValue,
+            year = localDate.year
+        ).map { entities ->
             entities.map { it.toTrackedFood() }
-
         }
     }
 }

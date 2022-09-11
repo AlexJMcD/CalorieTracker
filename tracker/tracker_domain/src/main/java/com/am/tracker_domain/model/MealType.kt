@@ -6,12 +6,12 @@ sealed class MealType(val name: String) {
     object Dinner: MealType("dinner")
     object Snack: MealType("snack")
 
-    companion object{
-        fun fromString(name: String): MealType{
-            return when(name){
+    companion object {
+        fun fromString(name: String): MealType {
+            return when(name) {
                 "breakfast" -> Breakfast
-                "dinner" -> Dinner
                 "lunch" -> Lunch
+                "dinner" -> Dinner
                 "snack" -> Snack
                 else -> Breakfast
             }

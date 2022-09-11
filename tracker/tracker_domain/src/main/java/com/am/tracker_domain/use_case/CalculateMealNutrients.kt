@@ -9,18 +9,18 @@ import com.plcoding.core.domain.model.UserInfo
 import com.plcoding.core.domain.preferences.Preferences
 import kotlin.math.roundToInt
 
-class CalculateMealNutrients (
+class CalculateMealNutrients(
     private val preferences: Preferences
-        ){
+) {
 
-    operator fun invoke(trackedFoods: List<TrackedFood>): Result{
+    operator fun invoke(trackedFoods: List<TrackedFood>): Result {
         val allNutrients = trackedFoods
             .groupBy { it.mealType }
             .mapValues { entry ->
                 val type = entry.key
                 val foods = entry.value
                 MealNutrients(
-                    carbs = foods.sumOf{it.carbs},
+                    carbs = foods.sumOf { it.carbs },
                     protein = foods.sumOf { it.protein },
                     fat = foods.sumOf { it.fat },
                     calories = foods.sumOf { it.calories },
@@ -33,16 +33,16 @@ class CalculateMealNutrients (
         val totalCalories = allNutrients.values.sumOf { it.calories }
 
         val userInfo = preferences.loadUserInfo()
-        val calorieGoal = dailyCalorieRequirement(userInfo)
-        val carbsGoal = (calorieGoal * userInfo.carbRatio /4f).roundToInt()
-        val proteinGoal = (calorieGoal * userInfo.proteinRatio /4f).roundToInt()
-        val fatGoal = (calorieGoal * userInfo.fatRatio /9f).roundToInt()
+        val caloryGoal = dailyCaloryRequirement(userInfo)
+        val carbsGoal = (caloryGoal * userInfo.carbRatio / 4f).roundToInt()
+        val proteinGoal = (caloryGoal * userInfo.proteinRatio / 4f).roundToInt()
+        val fatGoal = (caloryGoal * userInfo.fatRatio / 9f).roundToInt()
 
         return Result(
             carbsGoal = carbsGoal,
             proteinGoal = proteinGoal,
             fatGoal = fatGoal,
-            calorieGoal = calorieGoal,
+            caloriesGoal = caloryGoal,
             totalCarbs = totalCarbs,
             totalProtein = totalProtein,
             totalFat = totalFat,
@@ -64,18 +64,18 @@ class CalculateMealNutrients (
         }
     }
 
-    private fun dailyCalorieRequirement(userInfo: UserInfo): Int {
+    private fun dailyCaloryRequirement(userInfo: UserInfo): Int {
         val activityFactor = when(userInfo.activityLevel) {
             is ActivityLevel.Low -> 1.2f
             is ActivityLevel.Medium -> 1.3f
             is ActivityLevel.High -> 1.4f
         }
-        val calorieExtra = when(userInfo.goalType) {
+        val caloryExtra = when(userInfo.goalType) {
             is GoalType.LoseWeight -> -500
             is GoalType.KeepWeight -> 0
             is GoalType.GainWeight -> 500
         }
-        return (bmr(userInfo) * activityFactor + calorieExtra).roundToInt()
+        return (bmr(userInfo) * activityFactor + caloryExtra).roundToInt()
     }
 
     data class MealNutrients(
@@ -90,7 +90,7 @@ class CalculateMealNutrients (
         val carbsGoal: Int,
         val proteinGoal: Int,
         val fatGoal: Int,
-        val calorieGoal: Int,
+        val caloriesGoal: Int,
         val totalCarbs: Int,
         val totalProtein: Int,
         val totalFat: Int,

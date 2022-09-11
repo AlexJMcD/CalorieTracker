@@ -1,11 +1,12 @@
 package com.am.tracker_data.remote.dto
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 data class Product(
     @field:Json(name = "image_front_thumb_url")
     val imageFrontThumbUrl: String?,
-    val nutrients: Nutrients,
+    val nutriments: Nutriments,
     @field:Json(name = "product_name")
     val productName: String?
 )

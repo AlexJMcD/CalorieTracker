@@ -5,27 +5,27 @@ import com.am.tracker_domain.model.MealType
 import com.am.tracker_domain.model.TrackedFood
 import java.time.LocalDate
 
-fun TrackedFoodEntity.toTrackedFood(): TrackedFood{
+fun TrackedFoodEntity.toTrackedFood(): TrackedFood {
     return TrackedFood(
         name = name,
         carbs = carbs,
-        calories = calories,
         protein = protein,
-        fat = fats,
+        fat = fat,
         imageUrl = imageUrl,
         mealType = MealType.fromString(type),
         amount = amount,
         date = LocalDate.of(year, month, dayOfMonth),
+        calories = calories,
         id = id
     )
 }
 
-fun TrackedFood.toTrackedFoodEntity(): TrackedFoodEntity{
+fun TrackedFood.toTrackedFoodEntity(): TrackedFoodEntity {
     return TrackedFoodEntity(
         name = name,
         carbs = carbs,
         protein = protein,
-        fats = fat,
+        fat = fat,
         imageUrl = imageUrl,
         type = mealType.name,
         amount = amount,

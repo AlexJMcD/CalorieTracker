@@ -8,13 +8,14 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TrackerDao {
-    @Insert(onConflict =  OnConflictStrategy.REPLACE)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTrackedFood(trackedFoodEntity: TrackedFoodEntity)
 
     @Delete
     suspend fun deleteTrackedFood(trackedFoodEntity: TrackedFoodEntity)
 
-    @androidx.room.Query(
+    @Query(
         """
             SELECT *
             FROM trackedfoodentity
@@ -22,5 +23,4 @@ interface TrackerDao {
         """
     )
     fun getFoodsForDate(day: Int, month: Int, year: Int): Flow<List<TrackedFoodEntity>>
-
 }
